@@ -3,7 +3,7 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image } from 'react-native';
 
 import Home from './assets/components/Home/index';
 import NoteAdd from './assets/components/NoteAdd/index';
