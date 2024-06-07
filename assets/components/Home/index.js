@@ -50,16 +50,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FDFBD1'
-    },
-    notaView: {
-        flex: 1,
-        backgroundColor: '#59B200',
-        margin: 15,
-        padding: 50,
-        borderRadius: 10,
-        shadowColor: '#99FF33'
-    },
-    notaTitulo: {
-        color: '#fff'
     }
 })
