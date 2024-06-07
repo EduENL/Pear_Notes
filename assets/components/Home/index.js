@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, Button, StyleSheet, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { QuerySnapshot } from 'firebase/firestore';
@@ -30,12 +30,15 @@ const Home = () => {
         estimatedItemSize={100}
         renderItem={({item}) => (
             <View style= {styles.notaView}>
-                <Text style= {styles.notaTitulo}>
-                    {item.titulo}
-                </Text>
-                <Text style= {styles.notaNota}>
-                    {item.nota}
-                </Text>
+                <Pressable
+                onPress={() => navigation.navigate('Detalhe', {item})}>
+                    <Text style= {styles.notaTitulo}>
+                        {item.titulo}
+                    </Text>
+                    <Text style= {styles.notaNota}>
+                        {item.nota}
+                    </Text>
+                </Pressable>
             </View>
         )} 
       />
