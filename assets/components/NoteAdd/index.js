@@ -1,4 +1,4 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
 import React, {useState} from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import { firebase } from '../../../config';
@@ -47,3 +47,6 @@ const NoteAdd = () => {
 };
 
 export default NoteAdd;
+
+
+

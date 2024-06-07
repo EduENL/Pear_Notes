@@ -3,6 +3,7 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
+import { View, Image, StyleSheet } from 'react-native';
 
 import Home from './assets/components/Home/index';
 import NoteAdd from './assets/components/NoteAdd/index';
@@ -16,7 +17,8 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name='Home' component={Home}
           options={{
-            headerTitle: () => <Header name="Notes"></Header>,
+            headerTitle: () => <Header name="Pear Notes"></Header>,
+            headerStyle: styles.header, 
             }}>
         </Stack.Screen>
         <Stack.Screen name='NoteAdd' component={NoteAdd}
@@ -33,3 +35,9 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#FDFBD1',
+  }
+})
