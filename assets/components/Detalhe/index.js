@@ -29,12 +29,12 @@ const Detalhe = ({route}) => {
     }
 
   return (
-    <View>
+    <View style={styles.inputDetalhe}>
       <TextInput
+       style={styles.inputTitulo}
         placeholder='Titulo'
         value={TituloNota}
         onChangeText={(text) => setTituloNota(text)}
-        style={styles.inputTitulo}
       >
       </TextInput>
       <TextInput
@@ -45,7 +45,7 @@ const Detalhe = ({route}) => {
         multiline={true}
       >
       </TextInput>
-      <Button title="Atualizar Nota" onPress={handleUpdate} />
+      <Button title="Atualizar Nota" onPress={handleUpdate} color="#59B200"/>
     </View>
   )
 }
@@ -53,7 +53,33 @@ const Detalhe = ({route}) => {
 export default Detalhe
 
 const styles = StyleSheet.create({
-    header: {
-        backgroundColor: '#FDFBD1',
-    }
+  inputDetalhe: {
+    flex: 1,
+    backgroundColor: '#FDFBD1',
+    padding: 10,
+  },
+
+  inputTitulo: {
+    padding: 20,
+    fontWeight: '500',
+    color: '#000',
+    fontSize: 28,
+  },
+
+  inputNota: {
+    marginBottom: 510,
+    height: 60,
+    padding: 15,
+    fontWeight: '400',
+    fontSize: 20,
+    color: '#000',
+  },
+
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 50,
+    left: 20,
+    right: 20,
+  }
+
 })

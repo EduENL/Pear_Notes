@@ -12,17 +12,14 @@ const Header = (props) => {
 export default Header;
 
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#FDFBD1',
-  },
-
   headerText: {
     fontSize: 24,
     fontWeight: 'bold', 
     color: '#59B200', 
     textAlign: 'center',
     height: '70%',
-    width: '300%'
+    width: '115%',
+    paddingRight: '20',
   }
 
 });

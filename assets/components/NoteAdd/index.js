@@ -28,25 +28,57 @@ const NoteAdd = () => {
   };
 
   return (
-    <View>
+    <View style={styles.textView}>
       <TextInput
+      style={styles.textInput}
         placeholder='Título'
         value={titulo}
         onChangeText={(text) => setTitulo(text)}
       />
       <TextInput
+      style={styles.textStart}
         placeholder='Comece a escrever...'
         value={nota}
         onChangeText={(text) => setNota(text)}
         multiline={true}
       />
       {error && <Text style={{ color: 'red' }}>{error}</Text>}
-      <Button title="Adicionar Nota" onPress={addNota} />
+      <Button style={styles.buttonInput} title="Adicionar Nota" onPress={addNota} color="#59B200"/>
     </View>
   );
 };
 
 export default NoteAdd;
 
+const styles = StyleSheet.create({
+  textView: {
+    flex: 1,
+    backgroundColor: '#FDFBD1',
+    padding: 10,
+  },
 
+  textInput: {
+    padding: 20,
+    fontWeight: '500',
+    color: '#000',
+    fontSize: 28,
+  },
+
+  textStart: {
+    marginBottom: 510,
+    height: 60,
+    padding: 15,
+    fontWeight: '400',
+    fontSize: 20,
+    color: '#000',
+  },
+
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 50,
+    left: 20,
+    right: 20,
+  }
+
+});
 

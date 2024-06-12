@@ -19,16 +19,21 @@ export default function App() {
           options={{
             headerTitle: () => <Header name="Pear Notes"></Header>,
             headerStyle: styles.header, 
+            headerTitleAlign: 'center' 
             }}>
         </Stack.Screen>
         <Stack.Screen name='NoteAdd' component={NoteAdd}
         options={{
-          headerTitle: () => <Header name="Adicionar nota"></Header>
+          headerTitle: () => <Header name="Adicionar notas"></Header>,
+          headerStyle: styles.header1,
+          headerTitleAlign: 'center' 
           }}>
         </Stack.Screen>
         <Stack.Screen name='Detalhe' component={Detalhe}
         options={{
-          headerTitle: () => <Header name="Editar notas"></Header>
+          headerTitle: () => <Header name="Editar notas"></Header>,
+          headerStyle: styles.header2, 
+          headerTitleAlign: 'center' 
           }}>
         </Stack.Screen>
       </Stack.Navigator>
@@ -39,5 +44,18 @@ export default function App() {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#FDFBD1',
+  },
+  header1: {
+    backgroundColor: '#FDFBD1',
+  },
+  header2: {
+    backgroundColor: '#FDFBD1',
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#59B200',
+    textAlign: 'center',
+    flex: 1,
   }
-})
+});
