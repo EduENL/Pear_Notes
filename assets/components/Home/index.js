@@ -37,7 +37,7 @@ const Home = () => {
                         {item.titulo}
                     </Text>
                     <Text style= {styles.notaNota}>
-                        {item.nota}
+                        {item.nota.length > 25 ? `${item.nota.substring(0, 25)}...` : item.nota}
                     </Text>
                 </Pressable>
             </View>

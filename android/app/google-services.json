@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "563466070443",
+    "project_id": "appnotas-8a800",
+    "storage_bucket": "appnotas-8a800.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563466070443:android:f577c02c9ba385adc98aee",
+        "android_client_info": {
+          "package_name": "com.anonymous.pearnotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP289-egI5pDlhtAASG9deONAyIhYoVx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

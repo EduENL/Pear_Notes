@@ -1,6 +1,6 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
-import React, {useState} from 'react'
-import { TextInput } from 'react-native-gesture-handler'
+import { View, Text, Button, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { TextInput } from 'react-native-gesture-handler';
 import { firebase } from '../../../config';
 
 const NoteAdd = () => {
@@ -17,33 +17,40 @@ const NoteAdd = () => {
     try {
       const db = firebase.firestore();
       const notasRef = db.collection('notas');
-      await notasRef.add({
+      console.log('Enviando nota para o Firestore:', { titulo, nota });
+
+      const docRef = await notasRef.add({
         titulo,
         nota,
       });
+
+      console.log('Documento adicionado com ID:', docRef.id);
+
       console.log('Nota adicionada com sucesso!');
     } catch (error) {
-      console.error('Erro ao adicionar nota:', error);
+      console.error('Erro ao adicionar nota:', error.message);
+      setError('Erro ao adicionar nota. Tente novamente.');
     }
   };
+  
 
   return (
     <View style={styles.textView}>
       <TextInput
-      style={styles.textInput}
+        style={styles.textInput}
         placeholder='Título'
         value={titulo}
         onChangeText={(text) => setTitulo(text)}
       />
       <TextInput
-      style={styles.textStart}
+        style={styles.textStart}
         placeholder='Comece a escrever...'
         value={nota}
         onChangeText={(text) => setNota(text)}
         multiline={true}
       />
       {error && <Text style={{ color: 'red' }}>{error}</Text>}
-      <Button style={styles.buttonInput} title="Adicionar Nota" onPress={addNota} color="#59B200"/>
+      <Button style={styles.buttonInput} title="Adicionar Nota" onPress={addNota} color="#59B200" />
     </View>
   );
 };
@@ -78,7 +85,5 @@ const styles = StyleSheet.create({
     bottom: 50,
     left: 20,
     right: 20,
-  }
-
+  },
 });
-

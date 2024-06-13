@@ -1,0 +1,14 @@
+//   const checkFirestoreConnection = async () => {
+//   try {
+//     const db = firebase.firestore();
+//     const docRef = db.collection('notas').doc('teste');
+//     const doc = await docRef.get();
+//     if (doc.exists) {
+//       console.log('Conexão com o Firestore está funcionando!');
+//     } else {
+//       console.log('Erro ao conectar ao Firestore');
+//     }
+//   } catch (error) {
+//     console.error('Erro ao conectar ao Firestore:', error);
+//   }
+// };
