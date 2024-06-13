@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
 
     notaView: {
         backgroundColor: '#59B200',
-        width: '75%',
+        width: '75%', // largura fixa
+        height: 150, // altura fixa
         margin: 20,
         borderRadius: 10,
         paddingBottom: 80,

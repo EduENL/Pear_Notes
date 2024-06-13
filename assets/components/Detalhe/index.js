@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Button, Alert } from 'react-native';
+import { View, TextInput, StyleSheet, Button, Alert, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { firebase } from '../../../config';
 
@@ -42,22 +42,26 @@ const Detalhe = ({ route }) => {
   };
 
   return (
-    <View style={styles.inputDetalhe}>
-      <TextInput
-        style={styles.inputTitulo}
-        placeholder="Titulo"
-        value={TituloNota}
-        onChangeText={(text) => setTituloNota(text)}
-      />
-      <TextInput
-        placeholder="Nota"
-        value={TextoNota}
-        onChangeText={(text) => setTextoNota(text)}
-        style={styles.inputNota}
-        multiline={true}
-      />
-      <Button title="Atualizar Nota" onPress={handleUpdate} color="#59B200" />
-      <Button title="Excluir Nota" onPress={handleDelete} color="red" />
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <TextInput
+          style={styles.inputTitulo}
+          placeholder="Titulo"
+          value={TituloNota}
+          onChangeText={(text) => setTituloNota(text)}
+        />
+        <TextInput
+          placeholder="Nota"
+          value={TextoNota}
+          onChangeText={(text) => setTextoNota(text)}
+          style={styles.inputNota}
+          multiline={true}
+        />
+      </ScrollView>
+      <View style={styles.buttonContainer}>
+        <Button title="Atualizar Nota" onPress={handleUpdate} color="#59B200" />
+        <Button title="Excluir Nota" onPress={handleDelete} color="red" />
+      </View>
     </View>
   );
 };
@@ -65,9 +69,12 @@ const Detalhe = ({ route }) => {
 export default Detalhe;
 
 const styles = StyleSheet.create({
-  inputDetalhe: {
+  container: {
     flex: 1,
     backgroundColor: '#FDFBD1',
+  },
+  scrollContainer: {
+    flexGrow: 1,
     padding: 10,
   },
   inputTitulo: {
@@ -77,11 +84,15 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
   inputNota: {
-    marginBottom: 510,
-    height: 60,
+    height: '75%',
     padding: 15,
     fontWeight: '400',
     fontSize: 20,
     color: '#000',
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    padding: 10,
+    backgroundColor: '#FDFBD1',
   },
 });
