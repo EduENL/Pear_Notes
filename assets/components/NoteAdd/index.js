@@ -2,8 +2,10 @@ import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 import { firebase } from '../../../config';
+import { useNavigation } from '@react-navigation/native';
 
 const NoteAdd = () => {
+  const navigation = useNavigation();
   const [titulo, setTitulo] = useState('');
   const [nota, setNota] = useState('');
   const [error, setError] = useState(null);
@@ -18,20 +20,23 @@ const NoteAdd = () => {
       const db = firebase.firestore();
       const notasRef = db.collection('notas');
       console.log('Enviando nota para o Firestore:', { titulo, nota });
-
+    
       const docRef = await notasRef.add({
         titulo,
         nota,
       });
-
+    
       console.log('Documento adicionado com ID:', docRef.id);
-
+    
       console.log('Nota adicionada com sucesso!');
+      
+      // Navegar para a tela "Home" após adicionar a nota
+      navigation.navigate('Home');
     } catch (error) {
       console.error('Erro ao adicionar nota:', error.message);
       setError('Erro ao adicionar nota. Tente novamente.');
     }
-  };
+  };    
 
   return (
     <View style={styles.container}>

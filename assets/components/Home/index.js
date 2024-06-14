@@ -1,83 +1,89 @@
-import { View, Text, Button, StyleSheet, Image, Pressable } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { QuerySnapshot } from 'firebase/firestore';
-import { firebase } from "../../../config"
-import { FlashList } from '@shopify/flash-list';
+import { View, Text, Button, StyleSheet, Pressable, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { firebase } from "../../../config";
 
 const Home = () => {
+  const navigation = useNavigation();
+  const [notas, setNotas] = useState([]);
 
-    const navigation = useNavigation();
+  useEffect(() => {
+    const unsubscribe = firebase.firestore()
+      .collection('notas')
+      .onSnapshot((querySnapshot) => {
+        const newNotas = [];
+        querySnapshot.forEach((doc) => {
+          const { nota, titulo } = doc.data();
+          newNotas.push({ nota, titulo, id: doc.id });
+        });
+        setNotas(newNotas);
+      });
+    return () => unsubscribe();
+  }, []);
 
-    const [notas, setNotas] = useState([]);
-
-    useEffect(() => {
-        firebase.firestore()
-        .collection('notas')
-        .onSnapshot((QuerySnapshot) => {
-            const newNotas = [];
-            QuerySnapshot.forEach((doc) => {
-                const {nota, titulo} = doc.data();
-                newNotas.push({nota, titulo, id: doc.id});
-            })
-            setNotas(newNotas);
-        })
-    })
   return (
     <View style={styles.container}>
-      <FlashList
-        data={notas}
-        numColumns={2}
-        estimatedItemSize={100}
-        renderItem={({item}) => (
-            <View style= {styles.notaView}>
-                <Pressable
-                onPress={() => navigation.navigate('Detalhe', {item})}>
-                    <Text style= {styles.notaTitulo}>
-                        {item.titulo}
-                    </Text>
-                    <Text style= {styles.notaNota}>
-                        {item.nota.length > 25 ? `${item.nota.substring(0, 25)}...` : item.nota}
-                    </Text>
-                </Pressable>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.listContainer}>
+          {notas.map((item) => (
+            <View key={item.id} style={styles.notaView}>
+              <Pressable onPress={() => navigation.navigate('Detalhe', { item })}>
+                <Text style={styles.notaTitulo}>{item.titulo}</Text>
+                <Text style={styles.notaNota}>
+                  {item.nota.length > 25 ? `${item.nota.substring(0, 25)}...` : item.nota}
+                </Text>
+              </Pressable>
             </View>
-        )} 
-      />
-      <Button title="Adicionar nota" onPress={ () => navigation.navigate('NoteAdd')} color="#59B200"></Button>
+          ))}
+        </View>
+      </ScrollView>
+      <View style={styles.buttonContainer}>
+        <Button title="Adicionar nota" onPress={() => navigation.navigate('NoteAdd')} color="#59B200" />
+      </View>
     </View>
-  )
-}
+  );
+};
 
-
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10,
-        backgroundColor: '#FDFBD1'
-        // width: '65%'
-    },
-
-    notaView: {
-        backgroundColor: '#59B200',
-        width: '75%', // largura fixa
-        height: 150, // altura fixa
-        margin: 20,
-        borderRadius: 10,
-        paddingBottom: 80,
-        fontWeight: 'bold',
-        
-    },
-
-    notaTitulo: {
-        fontSize: 20,
-        padding: 5,
-        fontWeight: '500'
-    },
-
-    notaNota: {
-        padding: 5,
-    },
-
-})
+  container: {
+    flex: 1,
+    backgroundColor: '#FDFBD1',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+  },
+  listContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+  notaView: {
+    backgroundColor: '#59B200',
+    width: '40%', // Ajuste para caber duas colunas
+    height: 150,
+    margin: 10,
+    borderRadius: 10,
+    padding: 10,
+    justifyContent: 'center',
+  },
+  notaTitulo: {
+    fontSize: 20,
+    fontWeight: '500',
+    color: '#fff',
+  },
+  notaNota: {
+    fontSize: 16,
+    color: '#fff',
+  },
+  buttonContainer: {
+    padding: 10,
+    backgroundColor: '#FDFBD1',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+});
